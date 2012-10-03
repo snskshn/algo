@@ -49,3 +49,59 @@ class Queue(list):
 
 	def dequeue(self):
 		return self.pop(0)
+
+class Stack(list):
+	push = list.append
+
+# 0.a
+def print_arr(L):
+	for i in L:
+		print(i)
+
+# 0.b
+def all_is(L, k):
+	return L.count(k) == len(L)
+
+# 0.c
+def binary_count(num):
+	return list(bin(num)).count('1')
+
+# 0.e
+class StackQueue:
+	def __init__(self):
+		self.inStack = Stack()
+		self.outStack = Stack()
+	
+	def enqueue(self, item):
+		self.inStack.push(item)
+	
+	def dequeue(self):
+		if len(self.outStack) == 0:
+			while len(self.inStack) != 0:
+				self.outStack.push(self.inStack.pop())
+		return self.outStack.pop()
+
+# 0.f: 220
+
+# 0.g
+def dec2bin(num):
+	return bin(num)
+
+# 0.h
+def maxsum(L, p):
+	if not 0 <= p < len(L):
+		raise IndexError
+
+	maxI = maxJ = p
+	maxValue = 0
+	for i in range(0, p):
+		if sum(L[i:p]) > maxValue:
+			print("sum: %d" % sum(L[i:p]))
+			maxI = i
+			maxValue = sum(L[i:p])
+	maxValue = 0
+	for j in range(p, len(L) - 1):
+		if sum(L[p:j]) > maxValue:
+			maxJ = j - 1
+			maxValue = sum(L[p:j])
+	return maxI, maxJ
