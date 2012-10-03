@@ -1,3 +1,4 @@
+# 0.1: max & min
 def min(x, y):
 	return x if x < y else y
 
@@ -19,3 +20,20 @@ def max_arr2(a):
 		return a.pop()
 	else:
 		return max(a.pop(), max_arr2(a))
+
+# 0.2: swap
+def swap(x, y):
+	return y, x
+
+def swap_arr(L, i, j):
+	L[i], L[j] = L[j], L[i]
+
+# 0.3: rotate array
+def right_rotate(L, s, t, k = 1):
+	from collections import deque
+	d = deque(L[s:t+1])
+	d.rotate(k)
+	L[s:t+1] = list(d)
+
+def left_rotate(L, s, t, k = 1):
+	right_rotate(L, s, t, -k)
