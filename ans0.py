@@ -37,3 +37,15 @@ def right_rotate(L, s, t, k = 1):
 
 def left_rotate(L, s, t, k = 1):
 	right_rotate(L, s, t, -k)
+
+# 0.4: bank queue
+class Queue(list):
+	capacity = 8
+
+	def enqueue(self, item):
+		if len(self) >= Queue.capacity:
+			raise AttributeError
+		self.append(item)
+
+	def dequeue(self):
+		return self.pop(0)
