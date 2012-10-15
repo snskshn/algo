@@ -66,3 +66,15 @@ def fib_iter(n):
                 p = result
 
         return result
+
+def late(n, p):
+        result = 0
+        for i in range(1, 2**n + 1):
+                if '111' in bin(i):
+                        lates = bin(i).count('1')
+                        result += p**lates * (1 - p)**(n - lates)
+        return 1 - result
+def 나졸려생존():
+        print(late(20, 1/2))
+def 더졸려생존():
+        print(late(20, 2/3))
