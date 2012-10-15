@@ -43,3 +43,26 @@ def steps(n):
         if n < 2:
                 return 1
         return steps(n - 1) + steps(n - 2)
+
+def fib(n):
+        if n < 3:
+                return 1
+        return fib(n - 1) + fib(n - 2)
+
+memo_fib = {}
+def fib_memo(n):
+        if n < 3:
+                return 1
+        if not n in memo_fib:
+                memo_fib[n] = fib_memo(n - 1) + fib_memo(n - 2)
+        return memo_fib[n]
+
+def fib_iter(n):
+        p, pp, result = 0, 1, 0
+        
+        for i in range(2, n + 2):
+                result = pp + p
+                pp = p
+                p = result
+
+        return result
