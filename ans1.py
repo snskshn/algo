@@ -38,3 +38,8 @@ def valid_binary(n):
         if n == 1:
                 return 1
         return int(not bin(n).count('00')) + valid_binary(n - 1)
+
+def steps(n):
+        if n < 2:
+                return 1
+        return steps(n - 1) + steps(n - 2)
