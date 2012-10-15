@@ -25,3 +25,12 @@ def combination(n, r):
 	if r == 0 or n == r:
 		return 1
 	return combination(n - 1, r - 1) + combination(n - 1, r)
+
+memo = {}
+def combination_fast(n, r):
+        if r == 0 or n == r:
+                return 1
+        if not (n, r) in memo:
+                memo[(n, r)] = combination_fast(n - 1, r - 1) + combination_fast(n - 1, r)
+        return memo[(n, r)]
+        
