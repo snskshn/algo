@@ -21,7 +21,6 @@ def print_files(path = '/'):
 
 # 1.3
 def combination(n, r):
-	memo = [[0]*n for _ in [0]*r]
 	if r == 0 or n == r:
 		return 1
 	return combination(n - 1, r - 1) + combination(n - 1, r)
@@ -34,3 +33,8 @@ def combination_fast(n, r):
                 memo[(n, r)] = combination_fast(n - 1, r - 1) + combination_fast(n - 1, r)
         return memo[(n, r)]
         
+# 1.4
+def valid_binary(n):
+        if n == 1:
+                return 1
+        return int(not bin(n).count('00')) + valid_binary(n - 1)
