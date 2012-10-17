@@ -78,3 +78,29 @@ def 나졸려생존():
         print(late(20, 1/2))
 def 더졸려생존():
         print(late(20, 2/3))
+
+# 1.5
+class Pay(list):
+        def pay(self, amount, money = 1, L=[], debug = False):
+                if amount < 0:
+                        return 0
+                if amount == 0:
+                        if debug:
+                                print(L)
+                        return 1
+                result = 0
+                for i in self:
+                        if money > i:
+                                continue
+                        result += self.pay(amount - i, i, L + [i], debug)
+                return result
+
+import unittest
+class TestPay(unittest.TestCase):
+        def testPay(self):
+                p = Pay([1,2,5])
+                self.assertEqual(p.pay(10, debug=True), 10)
+                p1 = Pay([1, 2, 5, 10, 20, 50])
+                self.assertEqual(p1.pay(100), 4562)
+                p2 = Pay([1, 2, 5, 10, 20, 50, 100])
+                self.assertEqual(p2.pay(300), 466800)
