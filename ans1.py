@@ -148,3 +148,13 @@ class TestIntegerPartition(unittest.TestCase):
                 self.assertEqual(IntegerPartition.count(5, 5), 7)
                 self.assertEqual(IntegerPartition.count(5, 2), 3)
                 self.assertEqual(IntegerPartition.count(5, 3), 5)
+
+# 1.7
+def gray(n, L = ['0', '1']):
+        if n == 1:
+                return L
+        new = ['0'+x for x in L]
+        L.reverse()
+        new += ['1'+x for x in L]
+        L.reverse()
+        return gray(n - 1, new)
