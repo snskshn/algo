@@ -185,3 +185,34 @@ def allSum(n, m, L = []):
                 print(L)
         for i in range(1, n + 1):
                 allSum(n - i, m - 1, L + [i])
+
+# 1.d: http://www.geeksforgeeks.org/archives/3968
+inverse_count = 0
+def merge(left, right):
+        L = []
+        while len(left) > 0 and len(right) > 0:
+                if left[0] < right[0]:
+                        L.append(left.pop(0))
+                else:
+                        global inverse_count
+                        L.append(right.pop(0))
+                        inverse_count += len(left)
+        L.extend(left + right)
+        return L
+
+def mergeSort(L):
+        if len(L) < 2:
+                return L
+        left = mergeSort(L[:len(L) // 2])
+        right = mergeSort(L[len(L) // 2:])
+        return merge(left, right)
+
+class testMerge(unittest.TestCase):
+        def testMerge(self):
+                global inverse_count
+                inverse_count = 0
+                mergeSort([1, 3, 5, 4, 2])
+                self.assertEqual(inverse_count, 4);
+                inverse_count = 0
+                mergeSort([4, 3, 1, 5, 2])
+                self.assertEqual(inverse_count, 6);
