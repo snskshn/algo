@@ -178,3 +178,10 @@ def pascal(n, k = 0):
                 print(combination(k, i), end=' ')
         print()
         pascal(n, k + 1)
+
+# 1.c
+def allSum(n, m, L = []):
+        if n == m == 0:
+                print(L)
+        for i in range(1, n + 1):
+                allSum(n - i, m - 1, L + [i])
