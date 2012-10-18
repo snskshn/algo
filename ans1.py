@@ -169,3 +169,12 @@ def sumOfPower2(n, k):
         if n == 1:
                 return 1
         return sumOfPower2(n - 1, k) + n**k
+
+# 1.b
+def pascal(n, k = 0):
+        if n == k:
+                return
+        for i in range(k + 1):
+                print(combination(k, i), end=' ')
+        print()
+        pascal(n, k + 1)
