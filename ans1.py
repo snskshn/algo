@@ -216,3 +216,13 @@ class testMerge(unittest.TestCase):
                 inverse_count = 0
                 mergeSort([4, 3, 1, 5, 2])
                 self.assertEqual(inverse_count, 6);
+
+# 1.e
+def josephus(L):
+        if len(L) == 1:
+                return L[0]
+        L.pop(1)
+        return josephus(L[2:] + L[:2])
+def last_person(n):
+        L = list(range(1, n + 1))
+        return josephus(L)
