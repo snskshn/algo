@@ -158,3 +158,14 @@ def gray(n, L = ['0', '1']):
         new += ['1'+x for x in L]
         L.reverse()
         return gray(n - 1, new)
+
+# 1.a
+def sumOfPower(n, k):
+        result = 0
+        for i in range(1, n + 1):
+               result += i**k
+        return result
+def sumOfPower2(n, k):
+        if n == 1:
+                return 1
+        return sumOfPower2(n - 1, k) + n**k
