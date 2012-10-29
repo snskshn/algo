@@ -97,3 +97,23 @@ def _joyDynamic(L):
     print(result)
     
     return L.pop().pop()
+
+# 2.4
+def subset_sum(L, n, m):
+    assert(len(L) >= m)
+    if n < 0 or m < 0:
+        return 0
+    if m == n == 0:
+        return 1
+    t = list(L)
+    print(t, n, m)
+    e = t.pop()
+    return subset_sum(t, n - e, m - 1) + subset_sum(t, n, m - 1)
+
+class TestSubsetSum(unittest.TestCase):
+    def testSubsetSum(self):
+        self.assertEqual(subset_sum([6, 9, 13, 14, 20, 21, 22, 30, 49, 55],
+                                    110, 10), 1)
+        self.assertEqual(subset_sum([6, 9, 13, 14, 20, 21, 22, 30, 49, 55],
+                                    111, 10), 0)
+    
