@@ -76,6 +76,8 @@ def _joyDynamic(L):
         L[i][0] += L[i-1][0]
     for i in range(1, len(L)):
         for j in range(1, len(L[0])):
+            if L[i][j] == 0:
+                continue
             L[i][j] += max(L[i-1][j], L[i][j-1])
 
     # print path
