@@ -99,19 +99,25 @@ def _joyDynamic(L):
     return L.pop().pop()
 
 # 2.4
-def subset_sum(L, n):
+def subset_sum(L, n, result = []):
+    if n == 0:
+        #print(result, sum(result))
+        return 1
     if n < 0 or len(L) == 0:
         return 0
-    if n == 0:
-        return 1
-    return max(subset_sum(L[1:], n), subset_sum(L[1:], n - L[0]))
+    result2 = result[:]
+    result2.append(L[0])
+    return max(subset_sum(L[1:], n, result),
+               subset_sum(L[1:], n - L[0], result2))
 
 class TestSubsetSum(unittest.TestCase):
-    def testSubsetSum(self):
-        L1 = [6, 9, 13, 14, 20, 21, 22, 30, 49, 55]
-        L2 = list(range(10, 110, 10))
-        L3 = [2, 4, 6, 9, 12, 14, 15]
-        self.assertEqual(subset_sum(L1, 110), 1)
-        self.assertEqual(subset_sum(L1, 90), 1)
-        self.assertEqual(subset_sum(L2, 101), 0)
-        self.assertEqual(subset_sum(L3, 32), 1)
+    def testSubsetSum(self):    
+        self.L1 = [6, 9, 13, 14, 20, 21, 22, 30, 49, 55]
+        self.L2 = list(range(10, 110, 10))
+        self.L3 = [2, 4, 6, 9, 12, 14, 15]
+
+        self.assertEqual(subset_sum(self.L1, 100), 1)
+        self.assertEqual(subset_sum(self.L1, 110), 1)
+        self.assertEqual(subset_sum(self.L1, 90), 1)
+        self.assertEqual(subset_sum(self.L2, 101), 0)
+        self.assertEqual(subset_sum(self.L3, 32), 1)
